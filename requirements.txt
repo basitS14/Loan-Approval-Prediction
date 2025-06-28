@@ -3,3 +3,5 @@ imblearn
 pandas
 numpy
 seaborn
+xgboost
+-e .
