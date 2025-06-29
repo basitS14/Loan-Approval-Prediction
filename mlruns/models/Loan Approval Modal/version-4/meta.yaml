@@ -1,0 +1,18 @@
+aliases: []
+creation_timestamp: 1751216732616
+current_stage: None
+deployment_job_state: null
+description: ''
+last_updated_timestamp: 1751216732616
+metrics: null
+model_id: m-9bde284579ac4e04846122212df60ea8
+name: Loan Approval Modal
+params: null
+run_id: ''
+run_link: ''
+source: file:///C:/Users/windows/OneDrive/Documents/data%20science%20projects/Loan%20Approval/mlruns/0/models/m-9bde284579ac4e04846122212df60ea8/artifacts
+status: READY
+status_message: null
+storage_location: file:///C:/Users/windows/OneDrive/Documents/data%20science%20projects/Loan%20Approval/mlruns/0/models/m-9bde284579ac4e04846122212df60ea8/artifacts
+user_id: null
+version: 4
