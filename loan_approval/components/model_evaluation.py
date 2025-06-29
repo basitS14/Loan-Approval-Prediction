@@ -3,6 +3,7 @@ import sys
 import mlflow
 from mlflow.models import infer_signature
 import mlflow.sklearn
+import mlflow.sklearn
 from loan_approval.exception import CustomException
 from loan_approval.logger import logging
 from sklearn.metrics import accuracy_score , precision_score , f1_score , recall_score
@@ -48,18 +49,25 @@ class ModelEvaluation:
                 prediction = model.predict(X_test)
                 accuracy , precision , f1 , recall = self.get_eval_metrics(y_true=y_test , y_pred=prediction) 
 
-                mlflow.log_metric(accuracy)
-                mlflow.log_metric(precision)
-                mlflow.log_metric(f1)
-                mlflow.log_metric(recall)
+                mlflow.log_metric(value=accuracy)
+                mlflow.log_metric(value=precision)
+                mlflow.log_metric(value=f1)
+                mlflow.log_metric(value=recall)
 
-                mlflow.sklearn.load_model(
-                    model , 
-                    name="loan_model",
+                # mlflow.sklearn.load_model(
+                #     model , 
+                #     name="loan_model",
+                #     signature=signature,
+                #     input_example=input_example,
+                #     registered_model_name="Loan Approval Modal",
+
+                # )
+                mlflow.sklearn.log_model(
+                    sk_model=model,
+                    name="best_model",
                     signature=signature,
                     input_example=input_example,
                     registered_model_name="Loan Approval Modal",
-
                 )
 
 
