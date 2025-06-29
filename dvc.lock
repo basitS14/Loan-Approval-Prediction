@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  training:
+    cmd: python loan_approval\pipeline\training_pipeline.py
+    deps:
+    - path: loan_approval\components\data_ingestion.py
+      hash: md5
+      md5: abf452b30028e84c230297bef616ffa4
+      size: 1634
+    - path: loan_approval\components\data_transformation.py
+      hash: md5
+      md5: 054ba60d540101baa62d5479bac0de2f
+      size: 3374
+    - path: loan_approval\components\model_evaluation.py
+      hash: md5
+      md5: 342ee7bac20aa7039e696a059b5bc20b
+      size: 2710
+    - path: loan_approval\components\model_trainer.py
+      hash: md5
+      md5: 9114668c1017554aa5935e1707af5d4f
+      size: 2598
+    - path: loan_approval\pipeline\training_pipeline.py
+      hash: md5
+      md5: a3c16ecfb0f39eefb9552d68d197c8c6
+      size: 730
+    outs:
+    - path: artifacts\data.csv
+      hash: md5
+      md5: 3176867adfc66c11deeea70b45951356
+      size: 42749
+    - path: artifacts\model.pkl
+      hash: md5
+      md5: 3484b4432b0c171f149a33e0184615bf
+      size: 1023
+    - path: artifacts\preprocessor.pkl
+      hash: md5
+      md5: 2091fa8a367f3daed9387efeb65be566
+      size: 2641
+    - path: artifacts\test.csv
+      hash: md5
+      md5: 4c32104cf2de0d675399f6d3615d900a
+      size: 8796
+    - path: artifacts\train.csv
+      hash: md5
+      md5: eb0f12f7222d065bda5b60bebde70e41
+      size: 34745

@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/windows/OneDrive/Documents/data%20science%20projects/Loan%20Approval/mlruns/0/models/m-9bde284579ac4e04846122212df60ea8/artifacts
+creation_timestamp: 1751213698287
+experiment_id: '0'
+last_updated_timestamp: 1751213706362
+model_id: m-9bde284579ac4e04846122212df60ea8
+model_type: null
+name: best_model
+source_run_id: d70cf108d4d1400f98f49402bda68eb1
+status: 2
+status_message: null

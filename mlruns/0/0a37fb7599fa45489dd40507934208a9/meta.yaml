@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/windows/OneDrive/Documents/data%20science%20projects/Loan%20Approval/mlruns/0/0a37fb7599fa45489dd40507934208a9/artifacts
+end_time: 1751213224730
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0a37fb7599fa45489dd40507934208a9
+run_name: redolent-stag-232
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751213224650
+status: 4
+tags: []
+user_id: windows
