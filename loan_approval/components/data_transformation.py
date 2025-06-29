@@ -66,8 +66,8 @@ class DataTransformation:
             X_train_arr = preprocessing_obj.fit_transform(X_train)    # Here preprocessor object is geetting trained and fitted.
             X_test_arr = preprocessing_obj.transform(X_test)          # Here we only tranform on the learned preprocessor
 
-            y_train_arr = transform_target(y_train)
-            y_test_arr = transform_target(y_test)
+            y_train_arr = y_train.map({'Y':1 , 'N':0})
+            y_test_arr = y_test.map({'Y':1 , 'N':0})
 
             logging.info("Applying preproccessing object on training and test data.")
 

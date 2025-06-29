@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/windows/OneDrive/Documents/data%20science%20projects/Loan%20Approval/mlruns/0/552143bd7c514c6383591f152cc009fa/artifacts
+end_time: 1751212104480
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 552143bd7c514c6383591f152cc009fa
+run_name: wistful-gnat-936
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751212104362
+status: 4
+tags: []
+user_id: windows

@@ -42,7 +42,7 @@ def clean_data(df:DataFrame) -> DataFrame:
 
 
 def transform_target(target : Series ) -> Series:
-   return target.where(target == "Y" , 1 , 0)
+   return target.where((target == "Y") , 1 , 0)
 
 
 def save_object(file_path, obj):
