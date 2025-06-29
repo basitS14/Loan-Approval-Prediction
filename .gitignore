@@ -52,7 +52,7 @@ airflow/
 # Translations
 *.mo
 *.pot
-
+artifacts/
 # Django stuff:
 *.log
 local_settings.py
