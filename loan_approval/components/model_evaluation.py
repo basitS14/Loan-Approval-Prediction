@@ -49,10 +49,12 @@ class ModelEvaluation:
                 prediction = model.predict(X_test)
                 accuracy , precision , f1 , recall = self.get_eval_metrics(y_true=y_test , y_pred=prediction) 
 
-                mlflow.log_metric({"accuracy":accuracy})
-                mlflow.log_metric({"precison":precision})
-                mlflow.log_metric({"f1_score":f1})
-                mlflow.log_metric({"recall":recall})
+                mlflow.log_metric(key="accuracy" , value=accuracy)
+                mlflow.log_metric(key="precision" , value=precision)
+                mlflow.log_metric(key="f1_score" , value=f1)
+                mlflow.log_metric(key="recall" , value=recall)
+
+
 
                 # mlflow.sklearn.load_model(
                 #     model , 
