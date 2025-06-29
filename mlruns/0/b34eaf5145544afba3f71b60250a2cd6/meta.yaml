@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/windows/OneDrive/Documents/data%20science%20projects/Loan%20Approval/mlruns/0/b34eaf5145544afba3f71b60250a2cd6/artifacts
+end_time: 1751212914224
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b34eaf5145544afba3f71b60250a2cd6
+run_name: upbeat-cow-506
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751212914142
+status: 4
+tags: []
+user_id: windows
