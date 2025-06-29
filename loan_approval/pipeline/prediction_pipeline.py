@@ -21,7 +21,7 @@ class PredictionPipeline:
             model = load_object(model_pth)
 
             transformed_fea = preprocessor.transform(features)
-            pred = model.pred(transformed_fea)
+            pred = model.predict(transformed_fea)
 
             return pred
 
