@@ -3,85 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemstone Price Prediction - MLOps Project</title>
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+    <title>Loan Approval Prediction - AI-Powered MLOps</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 15s ease infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        }
+                    }
+                }
+            }
         }
-
-        body {
-            background: linear-gradient(45deg, #4e4376, #2b5876);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-            max-width: 700px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: #f39c12;
-        }
-
-        h2 {
-            font-size: 1.7rem;
-            margin-bottom: 20px;
-            color: #ecf0f1;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            padding: 15px 25px;
-            background-color: #f39c12;
-            border-radius: 50px;
-            color: #fff;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        a:hover {
-            background-color: #d35400;
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="container">
-        <h1>Welcome to the MLOps Gemstone Price Prediction Project</h1>
-        <h2>Leverage AI to Predict Gemstone Prices</h2>
-        <p>
-            This project explores advanced machine learning techniques for predicting the prices of gemstones using regression algorithms.
-            Join us as we dive into MLOps processes, from data preprocessing to model deployment, and learn how you can apply these skills to real-world problems.
-        </p>
-        <a href="/predict">Get Started</a>
-
-        <footer>
-            © 2024 MLOps Team | All rights reserved
-        </footer>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 animate-gradient overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-40 left-40 w-60 h-60 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style="animation-delay: 4s;"></div>
     </div>
+
+    <!-- Floating Particles -->
+    <div class="absolute inset-0">
+        <div class="absolute top-20 left-20 w-2 h-2 bg-white rounded-full opacity-60 animate-pulse-slow"></div>
+        <div class="absolute top-40 right-32 w-1 h-1 bg-cyan-400 rounded-full opacity-80 animate-bounce-slow"></div>
+        <div class="absolute bottom-32 left-16 w-1.5 h-1.5 bg-purple-400 rounded-full opacity-70 animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 right-20 w-1 h-1 bg-pink-400 rounded-full opacity-60 animate-bounce-slow" style="animation-delay: 3s;"></div>
+        <div class="absolute top-1/3 left-1/4 w-1 h-1 bg-yellow-400 rounded-full opacity-80 animate-pulse-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-2/3 right-1/3 w-1.5 h-1.5 bg-green-400 rounded-full opacity-70 animate-bounce-slow" style="animation-delay: 4s;"></div>
+    </div>
+
+    <div class="relative min-h-screen flex items-center justify-center px-4 py-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Main Content Container -->
+            <div class="backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12 lg:p-16 animate-float">
+                <!-- Glassmorphism accent -->
+                <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500/10 to-cyan-500/10 blur-sm"></div>
+                
+                <div class="relative z-10">
+                    <!-- Icon/Logo Section -->
+                    <div class="mb-8">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-2xl mb-6 animate-pulse-slow">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Main Heading -->
+                    <h1 class="text-5xl md:text-7xl font-black mb-4 bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent animate-pulse-slow">
+                        Loan Approval
+                        <span class="block text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text animate-shimmer">
+                            Prediction
+                        </span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <h2 class="text-xl md:text-2xl font-light text-purple-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                        Leverage   AI to Predict Loan Approvals with 
+                        <span class="text-cyan-300 font-semibold">Precision & Speed</span>
+                    </h2>
+
+                    <!-- Description -->
+                    <p class="text-lg text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                        Our machine learning model analyzes multiple applicant and loan-related features 
+                        to provide instant, accurate predictions. 
+                    </p>
+
+                    <!-- CTA Button -->
+                    <div class="mb-12">
+                        <a href="/predict" class="group relative inline-flex items-center px-12 py-4 text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full hover:from-purple-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl">
+                            <span class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                            <span class="relative flex items-center">
+                                Get Started
+                                <svg class="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </span>
+                            <div class="absolute inset-0 rounded-full overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 animate-shimmer"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Feature Pills -->
+                    <div class="flex flex-wrap justify-center gap-4 mb-12">
+                        <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-purple-200 border border-white/20">
+                            ⚡ Real-time Predictions
+                        </span>
+                        <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-cyan-200 border border-white/20">
+                            🤖 AI-Powered
+                        </span>
+                        <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-pink-200 border border-white/20">
+                            📊 MLOps Pipeline
+                        </span>
+                        <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-green-200 border border-white/20">
+                            🔒 Secure & Reliable
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="mt-12 text-center">
+                <div class="inline-block px-6 py-3 bg-black/20 backdrop-blur-sm rounded-full border border-white/10">
+                    <p class="text-sm text-gray-400">
+                        © 2024 <span class="text-purple-300 font-semibold">MLOps Team</span> | All rights reserved
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Add dynamic interaction
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.querySelectorAll('.absolute.inset-0 > div');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 0.5;
+                const xOffset = (x - 0.5) * speed * 10;
+                const yOffset = (y - 0.5) * speed * 10;
+                particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-pulse-slow');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.backdrop-blur-xl').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>

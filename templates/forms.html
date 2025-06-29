@@ -1,105 +1,325 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Approval Prediction Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f3f7f9;
-            padding: 30px;
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        }
+                    }
+                }
+            }
         }
-        .form-container {
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            background-color: teal;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        h2 {
-            text-align: center;
-            color: teal;
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-60 h-60 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float" style="animation-delay: 4s;"></div>
+    </div>
 
-<div class="form-container">
-    <h2>Loan Approval Prediction</h2>
-    <form action="/predict" method="POST">
-        <label>Gender:</label>
-        <select name="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
+    <!-- Floating Particles -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-20 left-20 w-2 h-2 bg-white rounded-full opacity-30 animate-pulse-slow"></div>
+        <div class="absolute top-40 right-32 w-1 h-1 bg-cyan-400 rounded-full opacity-50 animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-32 left-16 w-1.5 h-1.5 bg-purple-400 rounded-full opacity-40 animate-pulse-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 right-20 w-1 h-1 bg-pink-400 rounded-full opacity-50 animate-pulse-slow" style="animation-delay: 3s;"></div>
+    </div>
 
-        <label>Married:</label>
-        <select name="married" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
+    <div class="relative min-h-screen py-8 px-4 flex items-center justify-center">
+        <div class="w-full max-w-2xl mx-auto animate-slide-up">
+            <!-- Header Section -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-2xl mb-4 animate-pulse-slow">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent mb-2">
+                    Loan Approval Prediction
+                </h1>
+                <p class="text-gray-300 text-lg">Fill in your details to get an instant prediction</p>
+            </div>
 
-        <label>Dependents:</label>
-        <select name="dependents" required>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3+">3+</option>
-        </select>
+            <!-- Form Container -->
+            <div class="backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl p-8 md:p-12">
+                <form action="/predict" method="POST" class="space-y-6">
+                    <!-- Personal Information Section -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-semibold text-purple-200 border-b border-purple-500/30 pb-2 mb-6">
+                            Personal Information
+                        </h3>
+                        
+                        <!-- Row 1: Gender & Marital Status -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Gender</label>
+                                <div class="relative">
+                                    <select name="gender" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 appearance-none backdrop-blur-sm">
+                                        <option value="" class="bg-slate-800 text-white">Select Gender</option>
+                                        <option value="Male" class="bg-slate-800 text-white">Male</option>
+                                        <option value="Female" class="bg-slate-800 text-white">Female</option>
+                                    </select>
+                                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
 
-        <label>Education:</label>
-        <select name="education" required>
-            <option value="Graduate">Graduate</option>
-            <option value="Not Graduate">Not Graduate</option>
-        </select>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Marital Status</label>
+                                <div class="relative">
+                                    <select name="married" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 appearance-none backdrop-blur-sm">
+                                        <option value="" class="bg-slate-800 text-white">Select Status</option>
+                                        <option value="Yes" class="bg-slate-800 text-white">Married</option>
+                                        <option value="No" class="bg-slate-800 text-white">Single</option>
+                                    </select>
+                                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
 
-        <label>Self Employed:</label>
-        <select name="selfEmployed" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
+                        <!-- Row 2: Dependents & Education -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Number of Dependents</label>
+                                <div class="relative">
+                                    <select name="dependents" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 appearance-none backdrop-blur-sm">
+                                        <option value="" class="bg-slate-800 text-white">Select Dependents</option>
+                                        <option value="0" class="bg-slate-800 text-white">0</option>
+                                        <option value="1" class="bg-slate-800 text-white">1</option>
+                                        <option value="2" class="bg-slate-800 text-white">2</option>
+                                        <option value="3+" class="bg-slate-800 text-white">3+</option>
+                                    </select>
+                                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
 
-        <label>Applicant Income:</label>
-        <input type="number" name="applicantIncome" required>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Education Level</label>
+                                <div class="relative">
+                                    <select name="education" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 appearance-none backdrop-blur-sm">
+                                        <option value="" class="bg-slate-800 text-white">Select Education</option>
+                                        <option value="Graduate" class="bg-slate-800 text-white">Graduate</option>
+                                        <option value="Not Graduate" class="bg-slate-800 text-white">Not Graduate</option>
+                                    </select>
+                                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
 
-        <label>Coapplicant Income:</label>
-        <input type="number" step="0.01" name="coapplicantIncome" required>
+                        <!-- Self Employed -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-200">Employment Status</label>
+                            <div class="relative">
+                                <select name="selfEmployed" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 appearance-none backdrop-blur-sm">
+                                    <option value="" class="bg-slate-800 text-white">Select Employment</option>
+                                    <option value="Yes" class="bg-slate-800 text-white">Self Employed</option>
+                                    <option value="No" class="bg-slate-800 text-white">Employed</option>
+                                </select>
+                                <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
 
-        <label>Loan Amount:</label>
-        <input type="number" step="0.01" name="loanAmount" required>
+                    <!-- Financial Information Section -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-semibold text-cyan-200 border-b border-cyan-500/30 pb-2 mb-6">
+                            Financial Information
+                        </h3>
+                        
+                        <!-- Income Fields -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Applicant Income</label>
+                                <div class="relative">
+                                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 font-semibold">$</div>
+                                    <input type="number" name="applicantIncome" required 
+                                           class="w-full pl-8 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm" 
+                                           placeholder="5000">
+                                </div>
+                            </div>
 
-        <label>Loan Amount Term:</label>
-        <input type="number" step="0.01" name="loanAmountTerm" required>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Co-applicant Income</label>
+                                <div class="relative">
+                                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 font-semibold">$</div>
+                                    <input type="number" step="0.01" name="coapplicantIncome" required 
+                                           class="w-full pl-8 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm" 
+                                           placeholder="2000">
+                                </div>
+                            </div>
+                        </div>
 
-        <label>Credit History (1 = Yes, 0 = No):</label>
-        <select name="creditHistory" required>
-            <option value="1.0">1.0</option>
-            <option value="0.0">0.0</option>
-        </select>
+                        <!-- Loan Details -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Loan Amount</label>
+                                <div class="relative">
+                                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 font-semibold">$</div>
+                                    <input type="number" step="0.01" name="loanAmount" required 
+                                           class="w-full pl-8 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm" 
+                                           placeholder="150000">
+                                </div>
+                            </div>
 
-        <label>Property Area:</label>
-        <select name="propertyArea" required>
-            <option value="Urban">Urban</option>
-            <option value="Semiurban">Semiurban</option>
-            <option value="Rural">Rural</option>
-        </select>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Loan Term (months)</label>
+                                <div class="relative">
+                                    <input type="number" step="0.01" name="loanAmountTerm" required 
+                                           class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm" 
+                                           placeholder="360">
+                                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">months</div>
+                                </div>
+                            </div>
+                        </div>
 
-        <input type="submit" value="Predict Loan Approval">
-    </form>
-</div>
+                        <!-- Credit History & Property Area -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Credit History</label>
+                                <div class="relative">
+                                    <select name="creditHistory" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 appearance-none backdrop-blur-sm">
+                                        <option value="" class="bg-slate-800 text-white">Select Credit History</option>
+                                        <option value="1.0" class="bg-slate-800 text-white">✓ Good Credit History</option>
+                                        <option value="0.0" class="bg-slate-800 text-white">✗ No Credit History</option>
+                                    </select>
+                                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
 
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-200">Property Area</label>
+                                <div class="relative">
+                                    <select name="propertyArea" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 appearance-none backdrop-blur-sm">
+                                        <option value="" class="bg-slate-800 text-white">Select Area</option>
+                                        <option value="Urban" class="bg-slate-800 text-white">🏙️ Urban</option>
+                                        <option value="Semiurban" class="bg-slate-800 text-white">🏘️ Semi-urban</option>
+                                        <option value="Rural" class="bg-slate-800 text-white">🌾 Rural</option>
+                                    </select>
+                                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-6">
+                        <button type="submit" class="group relative w-full px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl hover:from-purple-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl">
+                            <span class="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400 to-cyan-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                            <span class="relative flex items-center justify-center">
+                                <svg class="mr-3 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                Predict Loan Approval
+                                <div class="ml-3 w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </span>
+                            <div class="absolute inset-0 rounded-xl overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 animate-shimmer"></div>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="text-center mt-8">
+                <p class="text-gray-400 text-sm">
+                    🔒 Your information is secure and encrypted
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add real-time form validation feedback
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.classList.add('ring-2', 'ring-purple-500');
+            });
+            
+            input.addEventListener('blur', function() {
+                this.classList.remove('ring-2', 'ring-purple-500');
+                if (this.value) {
+                    this.classList.add('border-green-500');
+                } else {
+                    this.classList.remove('border-green-500');
+                }
+            });
+        });
+
+        // Format currency inputs
+        const currencyInputs = document.querySelectorAll('input[name="applicantIncome"], input[name="coapplicantIncome"], input[name="loanAmount"]');
+        currencyInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                // Remove non-numeric characters except decimal point
+                let value = this.value.replace(/[^\d.]/g, '');
+                
+                // Ensure only one decimal point
+                const parts = value.split('.');
+                if (parts.length > 2) {
+                    value = parts[0] + '.' + parts.slice(1).join('');
+                }
+                
+                this.value = value;
+            });
+        });
+
+        // Add loading state to form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(e) {
+            const button = this.querySelector('button[type="submit"]');
+            button.classList.add('cursor-not-allowed', 'opacity-75');
+            button.disabled = true;
+            
+            // Show loading spinner
+            const spinner = button.querySelector('.animate-spin');
+            spinner.classList.remove('opacity-0');
+            spinner.classList.add('opacity-100');
+        });
+    </script>
 </body>
 </html>

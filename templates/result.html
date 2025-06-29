@@ -1,1 +1,159 @@
-<h1> Your Loan Application will be {{result}} </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4">
+    <!-- Subtle Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-5 animate-float"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-5 animate-float" style="animation-delay: 2s;"></div>
+    </div>
+
+    <div class="relative max-w-2xl mx-auto text-center animate-fade-in">
+        <!-- Result Container -->
+        <div class="backdrop-blur-xl bg-white/5 rounded-3xl border border-white/10 shadow-2xl p-12 md:p-16 animate-scale-in">
+            
+            <!-- Success Icon (shown when approved) -->
+            <div id="approved-icon" class="hidden mb-8">
+                <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mb-6 animate-bounce-gentle shadow-lg">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Rejection Icon (shown when rejected) -->
+            <div id="rejected-icon" class="hidden mb-8">
+                <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-red-500 to-pink-500 rounded-full mb-6 animate-pulse-slow shadow-lg">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Result Text -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Your Loan Application will be 
+                <span id="result-text" class="block mt-2 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent animate-pulse-slow">
+                    {{result}}
+                </span>
+            </h1>
+
+            <!-- Subtitle based on result -->
+            <p id="approved-message" class="hidden text-xl text-green-300 mb-8 font-light">
+                Congratulations! Your application meets our criteria.
+            </p>
+            
+            <p id="rejected-message" class="hidden text-xl text-red-300 mb-8 font-light">
+                We're unable to approve your application at this time.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+                <a href="/predict" class="group px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-xl hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 hover:scale-105 shadow-lg">
+                    <span class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Try Again
+                    </span>
+                </a>
+                
+                <a href="/" class="group px-8 py-3 bg-white/10 text-white border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-105 backdrop-blur-sm">
+                    <span class="flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate dynamic result handling
+        // In your actual template, you'd replace this with server-side logic
+        function handleResult() {
+            const resultText = document.getElementById('result-text').textContent.trim().toLowerCase();
+            
+            if (resultText.includes('approved') || resultText.includes('accept')) {
+                document.getElementById('approved-icon').classList.remove('hidden');
+                document.getElementById('approved-message').classList.remove('hidden');
+                // Add success styling
+                document.getElementById('result-text').classList.add('text-green-400');
+            } else if (resultText.includes('reject') || resultText.includes('denied')) {
+                document.getElementById('rejected-icon').classList.remove('hidden');
+                document.getElementById('rejected-message').classList.remove('hidden');
+                // Add error styling
+                document.getElementById('result-text').classList.add('text-red-400');
+            }
+        }
+
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a small delay for better visual effect
+            setTimeout(handleResult, 300);
+        });
+
+        // Add particle effect on result reveal
+        function createParticles() {
+            const container = document.querySelector('.backdrop-blur-xl');
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute w-2 h-2 bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full opacity-60';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${2 + Math.random() * 2}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, 4000);
+            }
+        }
+
+        // Trigger particle effect after page load
+        setTimeout(createParticles, 500);
+    </script>
+</body>
+</html>
