@@ -36,7 +36,7 @@ def prediction():
             predict_pipeline = PredictionPipeline()
             df = data.get_data_as_dataframe()
             result = predict_pipeline.predict(df)
-            final_result = "Approved" if result[0] == 1.0 else "Not Approved"
+            final_result = "approved" if result[0] == 1.0 else "reject"
 
             return render_template("result.html" , result=final_result)
             
