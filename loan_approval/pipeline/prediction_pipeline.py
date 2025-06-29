@@ -1,6 +1,7 @@
 from json import load
 import os
 import sys
+from mlflow.sklearn import load_model
 
 from loan_approval.logger import logging
 from loan_approval.exception import CustomException
@@ -15,10 +16,15 @@ class PredictionPipeline:
     def predict(self , features):
        try:
             preprocessor_pth = os.path.join("artifacts" , "preprocessor.pkl")
-            model_pth = os.path.join("artifacts" , "model.pkl")
 
             preprocessor = load_object(preprocessor_pth)
-            model = load_object(model_pth)
+            
+            model_name = "Loan Approval Modal"
+            model_version = "latest"
+
+            # Load the model from the Model Registry
+            model_uri = f"models:/{model_name}/{model_version}"
+            model = load_model(model_uri)
 
             transformed_fea = preprocessor.transform(features)
             pred = model.predict(transformed_fea)
