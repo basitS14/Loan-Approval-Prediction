@@ -3,5 +3,6 @@ imblearn
 pandas
 numpy
 seaborn
-xgboost
+mlflow
+apache-airflow==3.0.2
 -e .
