@@ -28,9 +28,7 @@ def clean_data(df:DataFrame) -> DataFrame:
         df['Self_Employed'] = df["Self_Employed"].fillna("Unknown")
         df['Loan_Amount_Term'] = df["Loan_Amount_Term"].fillna(df['Loan_Amount_Term'].mode()[0])
         df['Credit_History'] = df["Credit_History"].fillna(df['Credit_History'].mode()[0])
-
-        # grouped based imputation of null values based on Education
-        df['LoanAmount'] = df.groupby('Education')['LoanAmount'].transform(lambda x: x.fillna(x.median()))
+        df['LoanAmount'] = df["LoanAmount"].fillna(df['LoanAmount'].medina())
         
         logging.info("Data cleaning completed")
 
@@ -81,16 +79,11 @@ def evaluate_model(X_train , X_test , y_train , y_test , models ):
     results = []
     logging.info("Model training started")
     for model_name , model in models.items():
-        pipe = Imbpipeline([
-            ("oversampling" , SMOTE(random_state=42)),
-            ("model" , model)
-        ])
 
-        pipe.fit(X_train , y_train)
+        model.fit(X_train , y_train)
 
-        y_pred = pipe.predict(X_test)
+        y_pred = model.predict(X_test)
 
-        
         # Append metrics to the results list
         results.append({
             'Model': model_name,
@@ -105,7 +98,7 @@ def evaluate_model(X_train , X_test , y_train , y_test , models ):
     logging.info("Model report generated")
 
     # Sort by F1 Score or any other metric
-    return results_df.sort_values(by='F1 Score', ascending=False).reset_index(drop=True)
+    return results_df.sort_values(by='Accuracy', ascending=False).reset_index(drop=True)
 
 
 

@@ -30,16 +30,11 @@ class ModelTrainer:
                 )
             
                 models = {
-                    "RandomForest": RandomForestClassifier(
-                          max_depth=10, 
-                          max_features='sqrt',
-                          class_weight='balanced_subsample',
-                          min_samples_leaf=4,
-                          min_samples_split=13,
-                          n_estimators=410
+                    "LogisticRegression":LogisticRegression(
+                          C=0.01,
+                          penalty='l2',
+                          solver='liblinear'
                     ),
-                    "LogisticRegression":LogisticRegression(),
-                    "NaiveBayes":GaussianNB(),
                 }
                 model_report = evaluate_model(
                       X_train=X_train,
@@ -52,12 +47,12 @@ class ModelTrainer:
                 print("="*40)
                 print(model_report)
                 best_model_name = model_report['Model'][0]
-                best_model_score = model_report['F1 Score'][0]
+                best_model_score = model_report['Accuracy'][0]
                 logging.info(f"{best_model_name} performed better than others")
 
                 best_model = models[best_model_name]
 
-                print(f'Best Model Found , Model Name : {best_model_name} , F1 Score : {best_model_score}')
+                print(f'Best Model Found , Model Name : {best_model_name} , Accuracy : {best_model_score}')
 
                 save_object(
                       file_path=self.model_config.model_object_path,
