@@ -46,7 +46,7 @@ class DataTransformation:
             logging.info("Preprocessing Initiated.")
             preprocessor = ColumnTransformer([
                 ('normalization' ,StandardScaler() , numerical_cols ),
-                ('label_encoding', OrdinalEncoder(categories=label_encode_categories, dtype=np.int64), label_encode_cols)
+                ('label_encoding', OrdinalEncoder(categories=label_encode_categories, dtype=np.int64), label_encode_cols),
                 ('ordinal_encoding' , OrdinalEncoder(categories=ordinal_categories  , dtype=np.int64) ,oridianl_cols )
             ])
 
