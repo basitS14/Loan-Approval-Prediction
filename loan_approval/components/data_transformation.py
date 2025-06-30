@@ -6,7 +6,7 @@ from loan_approval.logger import logging
 from loan_approval.exception import CustomException
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import StandardScaler , OneHotEncoder , OrdinalEncoder 
+from sklearn.preprocessing import StandardScaler , OneHotEncoder , OrdinalEncoder , LabelEncoder
 import numpy as np
 import pandas as pd
 from loan_approval.utils.main_utils import transform_target , save_object
@@ -25,9 +25,16 @@ class DataTransformation:
         try:
             numerical_cols = ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount',
                                 'Loan_Amount_Term', 'Credit_History']
-            onehotcols = [
+            label_encode_cols = [
                 'Gender', 'Married', 'Self_Employed'
             ]
+
+            label_encode_categories = [
+                            ['Male', 'Female'],   
+                            ['No', 'Yes'],        
+                            ['No', 'Yes']         
+                        ]
+
 
             oridianl_cols = [ 'Education', 'Property_Area','Dependents']
             ordinal_categories = [
@@ -39,7 +46,7 @@ class DataTransformation:
             logging.info("Preprocessing Initiated.")
             preprocessor = ColumnTransformer([
                 ('normalization' ,StandardScaler() , numerical_cols ),
-                ('onehot_encoding' , OneHotEncoder() , onehotcols),
+                ('label_encoding', OrdinalEncoder(categories=label_encode_categories, dtype=np.int64), label_encode_cols)
                 ('ordinal_encoding' , OrdinalEncoder(categories=ordinal_categories  , dtype=np.int64) ,oridianl_cols )
             ])
 
