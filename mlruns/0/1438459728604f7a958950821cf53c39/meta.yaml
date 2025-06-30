@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/windows/OneDrive/Documents/data%20science%20projects/Loan%20Approval/mlruns/0/1438459728604f7a958950821cf53c39/artifacts
+end_time: 1751309892030
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1438459728604f7a958950821cf53c39
+run_name: sneaky-perch-632
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751309880160
+status: 3
+tags: []
+user_id: windows
