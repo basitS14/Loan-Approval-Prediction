@@ -28,7 +28,7 @@ def clean_data(df:DataFrame) -> DataFrame:
         df['Self_Employed'] = df["Self_Employed"].fillna("Unknown")
         df['Loan_Amount_Term'] = df["Loan_Amount_Term"].fillna(df['Loan_Amount_Term'].mode()[0])
         df['Credit_History'] = df["Credit_History"].fillna(df['Credit_History'].mode()[0])
-        df['LoanAmount'] = df["LoanAmount"].fillna(df['LoanAmount'].medina())
+        df['LoanAmount'] = df["LoanAmount"].fillna(df['LoanAmount'].median())
         
         logging.info("Data cleaning completed")
 
