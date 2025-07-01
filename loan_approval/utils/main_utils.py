@@ -4,6 +4,7 @@ import sys
 from pandas import Series
 import numpy as np
 
+import yaml
 from loan_approval.exception import CustomException
 from loan_approval.logger import logging
 import os 
@@ -101,4 +102,11 @@ def evaluate_model(X_train , X_test , y_train , y_test , models ):
     return results_df.sort_values(by='Accuracy', ascending=False).reset_index(drop=True)
 
 
+def load_params(params_pth:str) -> dict:
 
+    try:
+        with open(params_pth, 'r') as file:
+            params = yaml.safe_load(file)
+        return params
+    except Exception as e:
+        print(CustomException(e , sys))

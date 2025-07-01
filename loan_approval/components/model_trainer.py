@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from loan_approval.exception import CustomException
-from loan_approval.utils.main_utils import evaluate_model, save_object
+from loan_approval.utils.main_utils import evaluate_model, save_object , load_params
 from loan_approval.logger import logging
 
 
@@ -28,12 +28,12 @@ class ModelTrainer:
                       train_arr[: , -1],
                       test_arr[: , -1]
                 )
-            
+                params = load_params('params.yaml')
                 models = {
                     "LogisticRegression":LogisticRegression(
-                          C=0.01,
-                          penalty='l2',
-                          solver='liblinear'
+                          C=params['C'],
+                          penalty=params['penalty'],
+                          solver=params['solver']
                     ),
                 }
                 model_report = evaluate_model(
@@ -64,3 +64,4 @@ class ModelTrainer:
             except Exception as e:
                   print(CustomException(e , sys))
         
+
