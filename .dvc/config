@@ -1,0 +1,5 @@
+[core]
+    remote = gcsremote
+['remote "gcsremote"']
+    url = gs://loan-predictor-dvc/
+    credentialpath = ../gcloud_config/arcane-pillar-464607-c2-f7b94a70afa2.json

@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score , precision_score , f1_score , recall
 import os
 from urllib.parse import urlparse
 from loan_approval.utils.main_utils import load_object
+from dotenv import load_dotenv
+load_dotenv()
 
 class ModelEvaluation:
     def __init__(self):
@@ -38,7 +40,10 @@ class ModelEvaluation:
             model = load_object(model_path)
 
             logging.info("Model has been loaded")
+            mlflow_tracking_uri = os.getenv('MLFLOW_TRACKING_URI')
 
+            mlflow.set_tracking_uri(mlflow_tracking_uri)
+            mlflow.set_experiment("Loan Approval Model Training")
             url_type = urlparse(mlflow.get_tracking_uri()).scheme
             print(url_type)
 
