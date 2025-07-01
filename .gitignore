@@ -58,7 +58,7 @@ artifacts/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-
+gcloud_config/
 # Flask stuff:
 instance/
 .webassets-cache
