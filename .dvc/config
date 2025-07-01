@@ -1,5 +1,7 @@
 [core]
-    remote = gcsremote
+    remote = origin
 ['remote "gcsremote"']
     url = gs://loan-predictor-dvc
-    credentialpath = ~/.config/gcloud/application_default_credentials.json
+    credentialpath = ~\.config\gcloud\application_default_credentials.json
+['remote "origin"']
+    url = gs://loan-predictor-dvc
