@@ -17,8 +17,8 @@ stages:
       size: 2710
     - path: loan_approval\components\model_trainer.py
       hash: md5
-      md5: 60c506de72df6ccd049c2673e6714e89
-      size: 2317
+      md5: 8bea58daa98bfbd142f44a7620a46411
+      size: 2397
     - path: loan_approval\pipeline\training_pipeline.py
       hash: md5
       md5: a3c16ecfb0f39eefb9552d68d197c8c6
