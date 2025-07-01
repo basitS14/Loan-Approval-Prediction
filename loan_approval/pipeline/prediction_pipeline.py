@@ -2,7 +2,6 @@ from json import load
 import os
 import sys
 from mlflow.sklearn import load_model
-
 from loan_approval.logger import logging
 from loan_approval.exception import CustomException
 from loan_approval.utils.main_utils import load_object

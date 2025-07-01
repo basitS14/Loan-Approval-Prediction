@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 import os
 import sys
-from imblearn.pipeline import Pipeline as Imbpipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB

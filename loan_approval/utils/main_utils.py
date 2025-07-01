@@ -9,7 +9,6 @@ from loan_approval.exception import CustomException
 from loan_approval.logger import logging
 import os 
 import pickle
-from imblearn.pipeline import Pipeline as Imbpipeline
 from imblearn.over_sampling import SMOTE
 
 import pandas as pd
