@@ -36,8 +36,8 @@ def prediction():
             predict_pipeline = PredictionPipeline()
             df = data.get_data_as_dataframe()
             result = predict_pipeline.predict(df)
-            # final_result = "approved" if result[0] == 1.0 else "reject"
-            final_result = result
+            final_result = "approved" if result[0] == 1.0 else "reject"
+            # final_result = result
             
           
 
@@ -52,6 +52,6 @@ def prediction():
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
-        port=8080,
+        port=8000,
         debug=True
     )

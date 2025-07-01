@@ -1,12 +1,17 @@
 from json import load
 import os
 import sys
+import mlflow
 from mlflow.sklearn import load_model
 from loan_approval.logger import logging
 from loan_approval.exception import CustomException
 from loan_approval.utils.main_utils import load_object
 import pandas as pd
 
+import mlflow
+
+uri = os.getenv('MLFLOW_TRACKING_URI')
+mlflow.set_tracking_uri(uri=uri)
 
 class PredictionPipeline:
     def __init__(self):
@@ -24,7 +29,7 @@ class PredictionPipeline:
             # Load the model from the Model Registry
             model_uri = f"models:/{model_name}/{model_version}"
             model = load_model(model_uri)
-
+            logging.info(f"This is {model}")
             # transformed_fea = preprocessor.transform(features)
             pred = model.predict(features)
 
