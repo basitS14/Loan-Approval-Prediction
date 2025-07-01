@@ -36,7 +36,7 @@ class PredictionPipeline:
             return pred
 
        except Exception as e:
-           CustomException(e , sys)
+          raise CustomException(e , sys)
 
 class CustomData:
     def __init__(self,
