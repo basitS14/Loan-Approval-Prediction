@@ -1,0 +1,55 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.pyo
+
+# other folders
+artifacts/
+gcloud_config/
+
+
+# DVC cache and output files (they'll be pulled from remote)
+.dvc/
+*.dvc
+dvc.lock
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment & build files
+.env
+*.env
+.envrc
+*.log
+*.db
+*.sqlite
+*.pkl
+*.h5
+*.pt
+*.onnx
+*.model
+
+# Virtual environments
+venv/
+.env/
+env/
+ENV/
+.internship/
+.idea/
+.vscode/
+
+# Git-related
+.git/
+.gitignore
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Docker-related
+Dockerfile
+docker-compose.yml
+.dockerignore

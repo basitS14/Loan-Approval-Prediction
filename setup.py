@@ -4,9 +4,7 @@ from setuptools import find_packages , setup
 HYPHEN_DOT = '-e .'
 
 def get_requirements(file_path:str) -> List[str] :
-    """
-        This function returns list of requirements from a given path
-    """
+
     requirements = []
 
     with open(file_path) as file:

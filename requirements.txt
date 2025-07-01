@@ -1,11 +1,11 @@
 scikit-learn==1.2.2
-imblearn
-pandas
-numpy
-seaborn
-matplotlib
-mlflow
-dvc
-dvc-gs
-Flask
--e .
+imbalanced-learn==0.12.4
+pandas==2.2.3
+numpy==1.26.4
+seaborn==0.13.2
+matplotlib==3.10.0
+mlflow==3.1.1
+dvc==3.60.1
+Flask==3.1.0
+PyYAML
+gunicorn
