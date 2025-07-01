@@ -10,6 +10,7 @@ from sklearn.metrics import accuracy_score , precision_score , f1_score , recall
 import os
 from urllib.parse import urlparse
 from loan_approval.utils.main_utils import load_object
+from sklearn.pipeline import Pipeline
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -25,7 +26,7 @@ class ModelEvaluation:
 
         return (accuracy , precision , f1 , recall)
     
-    def initiate_model_evaluation(self , train_arr , test_arr):
+    def initiate_model_evaluation(self , train_arr , test_arr ):
         try:
             X_test , y_test , X_train , y_train = (
                 test_arr[: , :-1],
@@ -38,6 +39,9 @@ class ModelEvaluation:
 
             model_path = os.path.join("artifacts" , "model.pkl")
             model = load_object(model_path)
+
+            preprocessor_pth = os.path.join("artifacts" , "preprocessor.pkl")
+            preprocessor = load_object(preprocessor_pth)
 
             logging.info("Model has been loaded")
             mlflow_tracking_uri = os.getenv('MLFLOW_TRACKING_URI')
@@ -59,22 +63,20 @@ class ModelEvaluation:
                 mlflow.log_metric(key="f1_score" , value=f1)
                 mlflow.log_metric(key="recall" , value=recall)
 
+                # Saving model in mlflow
+                pipe = Pipeline([
+                    ('preprocessor' , preprocessor),
+                    ('model' , model)
+                ])
 
-
-                # mlflow.sklearn.load_model(
-                #     model , 
-                #     name="loan_model",
-                #     signature=signature,
-                #     input_example=input_example,
-                #     registered_model_name="Loan Approval Modal",
-
-                # )
                 mlflow.sklearn.log_model(
-                    sk_model=model,
+                    sk_model=pipe,
                     name="best_model",
                     signature=signature,
                     input_example=input_example,
                     registered_model_name="Loan Approval Modal",
+
+
                 )
 
 

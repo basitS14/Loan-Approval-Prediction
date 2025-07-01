@@ -14,9 +14,9 @@ class PredictionPipeline:
 
     def predict(self , features):
        try:
-            preprocessor_pth = os.path.join("artifacts" , "preprocessor.pkl")
+            # preprocessor_pth = os.path.join("artifacts" , "preprocessor.pkl")
 
-            preprocessor = load_object(preprocessor_pth)
+            # preprocessor = load_object(preprocessor_pth)
             
             model_name = "Loan Approval Modal"
             model_version = "latest"
@@ -25,8 +25,8 @@ class PredictionPipeline:
             model_uri = f"models:/{model_name}/{model_version}"
             model = load_model(model_uri)
 
-            transformed_fea = preprocessor.transform(features)
-            pred = model.predict(transformed_fea)
+            # transformed_fea = preprocessor.transform(features)
+            pred = model.predict(features)
 
             return pred
 
