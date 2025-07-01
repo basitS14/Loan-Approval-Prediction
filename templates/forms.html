@@ -55,6 +55,58 @@
         <div class="absolute bottom-32 left-16 w-1.5 h-1.5 bg-purple-400 rounded-full opacity-40 animate-pulse-slow" style="animation-delay: 2s;"></div>
         <div class="absolute bottom-20 right-20 w-1 h-1 bg-pink-400 rounded-full opacity-50 animate-pulse-slow" style="animation-delay: 3s;"></div>
     </div>
+    <!-- Beautiful Error Message Component -->
+{% if error_message %}
+<div class="mb-6 p-4 backdrop-blur-xl bg-red-500/10 border border-red-400/30 rounded-xl shadow-lg animate-fade-in">
+    <div class="flex items-center space-x-3">
+        <!-- Error Icon -->
+        <div class="flex-shrink-0">
+            <div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center animate-pulse-slow">
+                <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Error Message Text -->
+        <div class="flex-1">
+            <p class="text-red-300 font-medium text-sm md:text-base">
+                {{ error_message }}
+            </p>
+        </div>
+        
+        <!-- Close Button (Optional) -->
+        <div class="flex-shrink-0">
+            <button onclick="this.parentElement.parentElement.parentElement.style.display='none'" 
+                    class="w-8 h-8 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center transition-all duration-300 group">
+                <svg class="w-4 h-4 text-red-400 group-hover:text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes fade-in {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+}
+</style>
+{% endif %}
 
     <div class="relative min-h-screen py-8 px-4 flex items-center justify-center">
         <div class="w-full max-w-2xl mx-auto animate-slide-up">
@@ -164,7 +216,8 @@
                     <div class="space-y-6">
                         <h3 class="text-xl font-semibold text-cyan-200 border-b border-cyan-500/30 pb-2 mb-6">
                             Financial Information
-                        </h3>
+
+
                         
                         <!-- Income Fields -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

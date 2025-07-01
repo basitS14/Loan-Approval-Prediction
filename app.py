@@ -1,6 +1,6 @@
 import sys
 from flask import Flask , render_template , request
-import logging
+from loan_approval.logger import logging
 
 from loan_approval.pipeline.prediction_pipeline import CustomData  , PredictionPipeline
 
@@ -37,6 +37,8 @@ def prediction():
             df = data.get_data_as_dataframe()
             result = predict_pipeline.predict(df)
             final_result = "approved" if result[0] == 1.0 else "reject"
+            
+          
 
             return render_template("result.html" , result=final_result)
             
