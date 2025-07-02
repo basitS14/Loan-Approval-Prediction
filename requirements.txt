@@ -17,4 +17,5 @@ google-pasta==0.2.0
 google-resumable-media==2.7.2
 googleapis-common-protos==1.70.0
 PyYAML
+python-dotenv
 gunicorn
