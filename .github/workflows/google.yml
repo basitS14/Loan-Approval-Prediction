@@ -45,7 +45,7 @@ jobs:
 
       - name: Configure GCP credentials for DVC (GCS)
         run: |
-          echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode> gcp-key.json
+          echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode > gcp-key.json
           dvc remote modify origin credentialpath gcp-key.json
 
       - name: Set PYTHONPATH
