@@ -54,13 +54,25 @@ jobs:
       - name: DVC repro
         run: |
           dvc repro
-
-      - name: Commit and Push DVC metadata
+      - name: Configure Git
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add changes to Git
+        run: |
           git add .
-          git commit -m "Update DVC metadata" || echo "No changes to commit"
+
+      - name: Commit changes
+        if: ${{ github.actor != 'github-actions[bot]' }}
+        run: |
+          git commit -m "Automated commit of DVC outputs and updated code" || echo "No changes to commit"
+
+      - name: Push changes
+        if: ${{ github.actor != 'github-actions[bot]' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           git push
       
       - name: DVC Push
