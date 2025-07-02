@@ -65,7 +65,7 @@ instance/
 
 # Scrapy stuff:
 .scrapy
-
+gcp-key.json
 # Sphinx documentation
 docs/_build/
 
