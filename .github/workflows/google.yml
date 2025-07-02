@@ -51,9 +51,16 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
-      - name: DVC repro and push
+      - name: DVC repro
         run: |
           dvc repro
+
+      - name: Debug DVC remote config
+        run: |
+         dvc remote list -v
+      
+      - name: DVC Push
+        run: |
           dvc push
 
       - name: Deploy to Cloud Run
