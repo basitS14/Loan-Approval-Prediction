@@ -1,17 +1,17 @@
  
 stages:
   training:
-    cmd: python loan_approval\pipeline\training_pipeline.py
+    cmd: python loan_approval/pipeline/training_pipeline.py
     deps:
-      - loan_approval\pipeline\training_pipeline.py
-      - loan_approval\components\data_ingestion.py
-      - loan_approval\components\data_transformation.py
-      - loan_approval\components\model_trainer.py
-      - loan_approval\components\model_evaluation.py
+      - loan_approval/pipeline/training_pipeline.py
+      - loan_approval/components/data_ingestion.py
+      - loan_approval/components/data_transformation.py
+      - loan_approval/components/model_trainer.py
+      - loan_approval/components/model_evaluation.py
 
     outs:
-      - artifacts\data.csv
-      - artifacts\test.csv
-      - artifacts\train.csv
-      - artifacts\preprocessor.pkl
-      - artifacts\model.pkl
+      - artifacts/data.csv
+      - artifacts/test.csv
+      - artifacts/train.csv
+      - artifacts/preprocessor.pkl
+      - artifacts/model.pkl
