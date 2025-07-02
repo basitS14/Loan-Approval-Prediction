@@ -62,7 +62,7 @@ jobs:
 
       - name: Add changes to Git
         run: |
-          git add --all ':!gcp-key.json'
+          git add .
 
       - name: Commit changes
         run: |
