@@ -52,30 +52,20 @@ jobs:
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
       - name: DVC repro
-        run: |
-          dvc repro
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Add changes to Git
-        run: |
-          git add .
-
-      - name: Commit changes
-        run: |
-          git commit -m "Automated commit of DVC outputs and updated code" || echo "No changes to commit"
-
-      - name: Push changes
         env:
-          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+          REGION: ${{ secrets.GCP_REGION_NAME }}
+          PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
         run: |
-          git remote set-url origin https://x-access-token:${GIT_TOKEN}@github.com/${{ github.repository }}
-          git push origin ${{ github.ref_name }}
+          dvc repro    
       
       - name: DVC Push
+        env:
+          REGION: ${{ secrets.GCP_REGION_NAME }}
+          PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
         run: |
           dvc push
 
