@@ -54,6 +54,7 @@ jobs:
       - name: DVC repro
         run: |
           dvc repro
+
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
@@ -71,9 +72,9 @@ jobs:
       - name: Push changes
         if: ${{ github.actor != 'github-actions[bot]' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
-          git push
+          git push origin ${{ github.ref_name }}
       
       - name: DVC Push
         run: |
